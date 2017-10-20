@@ -76,7 +76,7 @@
 		<!--  -->
 		 
 	</head>
-	<body class="slides smoothScroll zen animated">
+	<body class="slides scroll animated">
 		
 
 <!-- SVG Library -->
@@ -246,6 +246,116 @@
     </div>
   </div>
 </section>
+
+<section class="slide fade kenBurns" name="contact" data-title="Get In Touch">
+			  <div class="content">
+				<div class="container">
+				  <div class="wrap">
+
+					<h1 class="ae-1">Get In Touch!</h1>
+					<h2 class="ae-2"> Take a moment to fill out the form below and we will get in contact with you! </h2>
+
+			
+			<ul class="grid grid-81 fixedSpaces equal equalMobile">
+            <li class="col-6-12">
+              
+                 <div class="fix-7-12 margin-top-6 margin-bottom-4">
+          <div class="pad shadow selected ae-3">
+            <form action="ajax-email.php" id="contact-form" method="post" class="wide left" data-ajax-form="true">
+              <div class="label cropTop"><label class="cropTop opacity-5" for="firstname55">Name</label></div>
+              <input class="stroke pair" id="firstname55" type="name" name="firstname" placeholder="First Name" required/><input class="stroke pair" id="lastname55" type="name" name="lastname" placeholder="Last Name" required/>
+
+              <div class="label"><label class="opacity-5" for="email55">Email address</label></div>
+              <input class="stroke wide" id="email55" type="email" name="email" placeholder="Email" required/>
+
+              <div class="label"><label class="opacity-5" for="phone55">Phone</label></div>
+              <input class="stroke wide" id="phone55" type="text" name="phone" placeholder="+1 202 XXX XXXX" required/>
+
+              <div class="label"><label class="opacity-5" for="subject55">Subject</label></div>
+              <select class="wide" style="max-width: 100%" id="subject55" name="subject">
+                <option>—</option>
+                <option value="option 1">Consultation</option>
+                <option value="option 2">Data Visualisation Design</option>
+                <option value="option 3">Hardware</option>
+                <option value="option 4">Software Development</option>
+                <option value="option 5">Training</option>
+              </select>
+
+              <div class="label"><label class="opacity-5" for="message55">Message</label></div>
+              <textarea class="wide left" id="message55" type="text" name="message" placeholder="Message" required></textarea>
+              <input class="button wide pink margin-top-2 cropBottom" type="submit" name="submit" value="Get In Touch!" data-success-text="Done!" data-success-class="green"/>
+            </form>
+          </div>
+        </div>
+          <!-- 1) copy the code -->
+			<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+			<script type="text/javascript">
+				$( "#contact-form" ).validate({
+				  rules: {
+					postcode: {
+					  required: true,
+					  number: true
+					},
+					tel: {
+					  required: true,
+					  phone: true
+					}
+				  },
+				  messages: {
+						name: "Enter your name",
+						business: "Enter your business name",
+						tel: "Enter your phone number",
+						postcode: "Enter your postcode"
+				  }
+				});
+
+				//validate phone number
+				$.validator.addMethod('phone', function(value, element) {
+					return this.optional(element) || (/^\d{7,}$/).test(value.replace(/[\s()+\-\.]|ext/gi, ''));
+				});
+			</script>
+
+			<!-- 2) copy styles of errors -->
+			<style>
+				form label.error { color: #F44336; margin:0;font-size: 14px;}
+				form input.error,form input.error:focus {box-shadow:0 0 0 1px #F44336 inset!important}
+				form input[name="tel"].wide { max-width:100%; }
+			</style>   
+                  
+            </li>
+            
+             <li class="col-6-12">
+              <div class="box-81 pad shadow table equalElement deepPurple ae-8 fromLeft margin-top-6 margin-bottom-4 js-tilt" data-tilt-max="-4">
+                <div class="cell left">
+                  <p class="light" style="color: cornsilk;" >Or you can reach me at: <br>
+						 <span class="hghlght">E-mail</span>:  <a href="mailto:ratheniel@gmail.com">ratheniel@gmail.com</a> <br>
+						<span class="hghlght">Phone Number</span>:  <a href="tel:+60123653606">012 365 2606</a></p>
+                  <div class="author-81">
+                     <div class="left Playfair italic bold" style="color: cornsilk;" > Rathes Waran <br>
+			<p class="light"  style="color: cornsilk;">BI Analyst and Web Developer</p>
+			 </div> 
+                  </div>
+                </div>
+              </div>
+            </li>
+            
+            <li class="col-6-12">
+              <h3 class="ae-4"> Be sure to subscribe &amp; receive updates! </h3>
+					<!-- Be sure you keep this form layout as it is. You can change the rest -->
+            <form id="subscribe" class="ae-5">
+              <input type="email" value="" name="subscribe-email" id="subscribe-email" placeholder="Your e-mail" class="input-38"/>
+              <input type="submit" value="Get Updates" name="subscribe-submit" class="button pink"/>
+              <label for="subscribe-email" class="subscribe-message"></label>
+            </form>
+            </li>
+            
+           
+          </ul>
+				  </div>
+				</div>
+			  </div>
+			  <div class="background" style="background-image:url(assets/img/img-42.jpg)"></div>
+			</section>
 
 <script type="text/javascript" src="https://threejs.org/build/three.js"></script>
 
