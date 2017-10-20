@@ -1,8 +1,8 @@
 <?php
 
 /* SETTINGS */
-$yourEmail = "your.email@gmail.com";
-$emailSubject = "New Message from Contact Form";
+$recipient = "ratheniel@gmail.com";
+$subject = "YogaSing: New Message from Contact Form";
 
 if($_POST){
 
@@ -10,8 +10,13 @@ if($_POST){
   $name = $_POST['name'];
   $email = $_POST['email'];
   $message = $_POST['message'];
-  $emailSubject = $emailSubject . " by " . $name;
+//$phone = $_POST['phone'];
 
+
+  /* SUBJECT */
+  $emailSubject = $subject . " by " . $name;
+
+  /* HEADERS */
   $headers = "From: $name <$email>\r\n" .
              "Reply-To: $name <$email>\r\n" . 
              "Subject: $emailSubject\r\n" .
@@ -25,7 +30,14 @@ if($_POST){
     die("500 Internal Server Error");
   }
 
+  /* MESSAGE TEMPLATE */
+  $mailBody = "Name: $name \n\r" .
+              "Email:  $email \n\r" .
+              "Subject:  $subject \n\r" .
+//            "Phone:  $phone \n\r" .
+              "Message: $message";
+
   /* SEND EMAIL */
-  mail($yourEmail, $emailSubject, $message, $headers);
+  mail($recipient, $emailSubject, $mailBody, $headers);
 }
 ?>
