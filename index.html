@@ -37,7 +37,7 @@
 
 		<!-- Styles -->
 		<link href="css/slides.css" rel="stylesheet" type="text/css">
-
+        <link rel="stylesheet" href="style.css">
 		<!-- Custom Styles -->
 		<!--link href="css/custom.css" rel="stylesheet" type="text/css"-->
 
@@ -261,30 +261,27 @@
               
                  <div class="fix-7-12 margin-top-6 margin-bottom-4">
           <div class="pad shadow selected ae-3">
-            <form action="ajax-email.php" id="contact-form" method="post" class="wide left" data-ajax-form="true">
-              <div class="label cropTop"><label class="cropTop opacity-5" for="firstname55">Name</label></div>
-              <input class="stroke pair" id="firstname55" type="name" name="firstname" placeholder="First Name" required/><input class="stroke pair" id="lastname55" type="name" name="lastname" placeholder="Last Name" required/>
+           <div id="form-messages"></div>
+            <form id="ajax-contact" method="post" action="mailer.php">
+					<div class="field">
+						<label for="name">Name:</label>
+						<input type="text" id="name" name="name" required>
+					</div>
 
-              <div class="label"><label class="opacity-5" for="email55">Email address</label></div>
-              <input class="stroke wide" id="email55" type="email" name="email" placeholder="Email" required/>
+					<div class="field">
+						<label for="email">Email:</label>
+						<input type="email" id="email" name="email" required>
+					</div>
 
-              <div class="label"><label class="opacity-5" for="phone55">Phone</label></div>
-              <input class="stroke wide" id="phone55" type="text" name="phone" placeholder="+1 202 XXX XXXX" required/>
+					<div class="field">
+						<label for="message">Message:</label>
+						<textarea id="message" name="message" required></textarea>
+					</div>
 
-              <div class="label"><label class="opacity-5" for="subject55">Subject</label></div>
-              <select class="wide" style="max-width: 100%" id="subject55" name="subject">
-                <option>—</option>
-                <option value="option 1">Consultation</option>
-                <option value="option 2">Data Visualisation Design</option>
-                <option value="option 3">Hardware</option>
-                <option value="option 4">Software Development</option>
-                <option value="option 5">Training</option>
-              </select>
-
-              <div class="label"><label class="opacity-5" for="message55">Message</label></div>
-              <textarea class="wide left" id="message55" type="text" name="message" placeholder="Message" required></textarea>
-              <input class="button wide pink margin-top-2 cropBottom" type="submit" name="submit" value="Get In Touch!" data-success-text="Done!" data-success-class="green"/>
-            </form>
+					<div class="field">
+						<button type="submit">Send</button>
+					</div>
+				</form>
           </div>
         </div>
           <!-- 1) copy the code -->
@@ -542,6 +539,7 @@ if (window.isChromeiOS) {
 
 <!-- Preloader -->
 <div class="loadingIcon"><svg class="loading-icon" id="loading-circle" viewBox="0 0 18 18"><circle class="circle" opacity=".1" stroke="#fff" stroke-width="2" stroke-miterlimit="10" cx="9" cy="9" r="8" fill="none"></circle><circle class="dash" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1,100" cx="9" cy="9" r="8" fill="none"></circle></svg></div>
-					
+		<script src="jquery-2.1.0.min.js"></script>
+        <script src="app.js"></script>			
 	</body>
 </html>
