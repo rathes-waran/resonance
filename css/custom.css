@@ -1,0 +1,160 @@
+@font-face {
+font-family: sfdisplay-thin;
+src: url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035310SanFranciscoDisplay-Thin.eot) , url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035310SanFranciscoDisplay-Thin.woff), url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/SanFranciscoDisplay-Thin.otf) ;
+font-weight: normal; 
+}
+
+@font-face {
+font-family: sfdisplay-semibold;
+src:  url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035354SanFranciscoDisplay-Semibold.eot) , url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035354SanFranciscoDisplay-Semibold.woff), url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/SanFranciscoDisplay-Semibold.otf) ;
+font-weight: normal; 
+}
+
+@font-face {
+font-family: sfdisplay-regular;
+src:  url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035427SanFranciscoDisplay-Regular.eot) , url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035427SanFranciscoDisplay-Regular.woff), url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/SanFranciscoDisplay-Regular.otf);
+font-weight: normal; 
+}
+
+@font-face {
+font-family: sfdisplay-medium;
+src:  url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035451SanFranciscoDisplay-Medium.eot) , url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035451SanFranciscoDisplay-Medium.woff), url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/SanFranciscoDisplay-Medium.otf) ;
+font-weight: normal; 
+}
+
+@font-face {
+font-family: sfdisplay-light;
+src:  url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035514SanFranciscoDisplay-Light.eot) , url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035514SanFranciscoDisplay-Light.woff), url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/SanFranciscoDisplay-Light.otf) ;
+font-weight: normal; 
+}
+
+@font-face {
+font-family: sfdisplay-heavy;
+src:  url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035539SanFranciscoDisplay-Heavy.eot) , url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035539SanFranciscoDisplay-Heavy.woff), url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/SanFranciscoDisplay-Heavy.otf) ;
+font-weight: normal; 
+}
+
+@font-face {
+font-family: sfdisplay-bold;
+src:  url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035611SanFranciscoDisplay-Bold.eot) , url(http://thegradinterns.com/wp-content/uploads/useanyfont/171019035611SanFranciscoDisplay-Bold.woff), url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/SanFranciscoDisplay-Bold.otf) ;
+font-weight: normal; 
+}
+
+@font-face {
+font-family: sfdisplay-black;  
+src: url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/SanFranciscoDisplay-Black.otf);
+font-weight: normal;  
+}
+
+@font-face {
+font-family: chronicle-semibold;  
+src: url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/Chronicle%20Display%20Semibold%20Italic.otf);
+font-weight: normal;  
+}
+
+@font-face {
+font-family: Oswald-Heavy-Italic;  
+src: url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/Oswald-Demi-BoldItalic.ttf);
+font-weight: normal;  
+}
+
+@font-face {
+font-family: Oswald-Regular-Italic;  
+src: url(https://ratheniel.github.io/Gradinterns-uploads/Official/Fonts/Oswald-DemiBold.ttf);
+font-weight: normal;  
+}
+
+
+.slide .hghlght {
+    position: relative;
+    white-space: nowrap
+}
+.slide .hghlght:after,
+.slide .hghlght:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -3px;
+    height: 55%;
+    width: 0;
+    -webkit-transition: .4s width, 6s background;
+    transition: .4s width, 6s background;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    -webkit-transition-delay: 2s;
+    transition-delay: 2s;
+    -webkit-transform-origin: left;
+    transform-origin: left bottom;
+    overflow: hidden;
+    background: rgba(78, 195, 224, 0.82);
+    z-index: -1;
+    box-shadow: 2px 0 0 2px rgba(78, 195, 224, 0.15) inset;
+    border-radius: 3px;
+    -webkit-transform: skewX(-1deg) rotate(-0.8deg) translateY(-55%);
+    transform: skewX(-1deg) rotate(-0.8deg) translateY(-55%)
+}
+.slide .hghlght:before {
+    left: 2px;
+    -webkit-transition-delay: 2.45s;
+    transition-delay: 2.45s;
+    -webkit-transform: skewX(-2deg) rotate(-1.5deg) translateY(0);
+    transform: skewX(-2deg) rotate(-1.5deg) translateY(0)
+}
+.slide .done .hghlght:before,
+.slide .done .hghlght:after {
+    width: 100%;
+    background: rgba(78, 195, 224, 0.61)
+}
+.presentation .slide .hghlght:after {
+    display: none
+}
+.presentation .slide .hghlght:before {
+    height: 85%;
+    box-shadow: none;
+    -webkit-transform: skewX(-16deg) rotate(-0.3deg) translateX(-9px);
+    transform: skewX(-16deg) rotate(-0.3deg) translateX(-9px);
+    opacity: 1;
+    background: #f37d59;
+    -webkit-transition: .5s width;
+    transition: .5s width;
+    -webkit-transition-timing-function: cubic-bezier(1, 0.02, 0.28, 0.99);
+    transition-timing-function: cubic-bezier(1, 0.02, 0.28, 0.99)
+}
+.presentation .slide.purchase-slide .hghlght:before {
+    background: rgba(180, 89, 243, 0.35)
+}
+.slide .done .hghlght:before {
+    width: 105%
+}
+.presentation .slide .hghlght:nth-child(2):before {
+    -webkit-transition-delay: .5s;
+    transition-delay: .5s
+}
+.presentation .slide .hghlght:nth-child(3):before {
+    -webkit-transition-delay: 1s;
+    transition-delay: 1s
+}
+.resources .slide.animate .hghlght:before {
+    height: 75%;
+    opacity: 1
+}
+.resources .slide .hghlght:after,
+.changelog .slide .hghlght:after {
+    display: none
+}
+.resources .slide .hghlght:before {
+    background: rgba(0, 216, 255, 0.85);
+    box-shadow: 2px 0 0 2px rgba(0, 216, 255, 0.1) inset
+}
+.changelog .slide .hghlght:before {
+    -webkit-transition: .6s width, 6s background;
+    transition: .6s width, 6s background;
+    -webkit-transition-delay: 3s;
+    transition-delay: 3s;
+    transform: skewX(-1deg) rotate(-0.5deg) translateY(10%);
+    left: -2px
+}
+.changelog .slide.animate .hghlght:before {
+    width: calc(100% + 3px);
+    height: 100%
+}

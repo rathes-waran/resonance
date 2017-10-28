@@ -95,7 +95,8 @@ a {
 
 h1, .h1 {
 	font-size: 52px;
-	line-height: 1.05;  
+	line-height: 1.05;
+	font-family: $header-font;
 	font-weight: 300;
 	margin-bottom: 20px;
 	letter-spacing: -0.036em;
@@ -126,6 +127,7 @@ h2,
 	font-size: 35px;
 	line-height: 1.17;
 	margin-bottom: 15px;
+	font-family: $header-font;
 	font-weight:  400;
 
 	&.uppercase {
@@ -149,6 +151,7 @@ h3,
 .h3 {
 	font-size: 22px;
 	margin-bottom: 12px;
+	font-family: $header-font;
 	font-weight:600;
 
 	&.large {
@@ -176,6 +179,7 @@ h3,
 h4, 
 .h4 {
 	font-size: 22px;
+	font-family: $header-font;
 	margin-bottom: 10px;
 
 	&.small {
@@ -190,6 +194,7 @@ h4,
 h5, 
 .h5 {
 	font-size: 19px;
+	font-family: $header-font;
 	font-weight: 600;
 	margin-bottom: 3px;
 
@@ -331,7 +336,8 @@ small {
 	user-select: none;
 	transition: 0.25s;
 
-	.slide & {
+	.slide &,
+	.popup & {
 		margin-left: 7px;
 		margin-right: 7px;
 
@@ -919,6 +925,10 @@ form {
 		&.uppercase {
 			font-size: 14px;
 		}
+
+		@include media($phablet + 1, max) {
+			margin-top: 30px;
+		}
 	}
 
 	input[type="text"],
@@ -944,12 +954,12 @@ form {
 		-moz-appearance: none;
 		appearance: none;
 		
-		box-shadow: 0 0 0 1px rgba(41, 41, 41, 0.1) inset, 0 3px 4px 0px rgba(41, 41, 41, 0.1) inset, 0 -100px 0 #fff inset;
+		box-shadow: 0 0 0 1px rgba(41, 41, 41, 0.1) inset, 0 3px 4px 0px rgba(41, 41, 41, 0.1) inset;
 		transition: 0.15s;
 		
 		&.flat,
 		&:focus {
-			box-shadow: 0 0 0 1px rgba(41, 41, 41, 0.2) inset, 0 3px 4px 0px rgba(41, 41, 41, 0) inset, 0 -100px 0 #fff inset;
+			box-shadow: 0 0 0 1px rgba(41, 41, 41, 0.2) inset, 0 3px 4px 0px rgba(41, 41, 41, 0) inset;
 		}
 
 		&:focus {
@@ -997,6 +1007,11 @@ form {
 
 	select {
 		background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="37" height="7"><path fill="#303030" d="M14.022 0l5.978 6 6-6z"	/></svg>');
+		background-repeat: no-repeat;
+  	background-position: right;
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
+	  appearance: none;
 	}									  
 
 	input[type="text"],
@@ -1006,13 +1021,43 @@ form {
 	input[type="tel"],
 	input[type="submit"],
 	button[type="submit"],
-	textarea {
+	select,
+	textarea,
+	label {
 		margin: 5px;
 
 		&.wide {
 			max-width: 100%;
-			margin-left: 0;
-			margin-right: 0;
+			width: 100%;
+			margin: 8px 0;
+		}
+
+		@include media($phablet + 1, max) {
+			margin-left: auto !important;
+			margin-right: auto !important;
+			width: 100%;
+			max-width: 350px !important;
+			display: block !important;
+		}
+	}
+
+	&.wide {
+
+		input[type="text"],
+		input[type="name"],
+		input[type="email"],
+		input[type="password"],
+		input[type="tel"],
+		input[type="submit"],
+		button[type="submit"],
+		select,
+		textarea,
+		label {
+
+			max-width: 100%;
+			width: 100%;
+			margin: 8px 0;
+			
 		}
 	}
 
@@ -1024,6 +1069,8 @@ form {
 			max-width: 50% !important;
 			border-top-right-radius: 0px !important;
 			border-bottom-right-radius: 0px !important;
+			margin-left: 0;
+			margin-right: 0;
 
 			+ .pair {
 				border-top-left-radius: 0px !important;
@@ -1036,34 +1083,10 @@ form {
 			}
 		}
 	}
-
-	&.wide input,
-	&.wide textarea {
-		width: 100%;
-		max-width: 100%;
-		margin: 8px 0;
-	}
-
+	
 	&.center input,
 	&.center textarea {
 		text-align: center;
-	}
-}
-
-@include media($phablet + 1, max) {
-	
-	form input,
-	form textarea,
-	form label {
-		margin-left: auto !important;
-		margin-right: auto !important;
-		width: 100%;
-		max-width: 350px !important;
-		display: block !important;
-	}
-	
-	form label {
-		margin-top: 30px;
 	}
 }
 
@@ -1205,77 +1228,6 @@ form {
 .popup:not(.youtube) .background iframe {
 	width: 100%;
 	height: 100%;
-}
-
-/* Grid */
-.grid {
-	margin-left: -2%;
-	margin-right: -2%;
-
-	[class*='col-'] {
-		display: block;
-		width: 100%;
-		padding-left: 2%;
-		padding-right: 2%;
-		float: left;
-	}
-
-	&.fixedSpaces {
-		$gapSpace: 14px;
-
-		margin-left: -$gapSpace;
-		margin-right: -$gapSpace;
-
-		[class*='col-'] {
-			padding-left: $gapSpace;
-			padding-right: $gapSpace;
-		}
-	}
-
-	&.noSpaces {
-		margin-left: 0;
-		margin-right: 0;
-
-		[class*='col-'] {
-			padding-left: 0;
-			padding-right: 0;
-		}
-	}
-
-	.toLeft[class*='col-'] {
-		margin-left: 0 !important;
-		margin-right: auto !important;
-	}
-
-	.toRight[class*='col-'] {
-		margin-right: 0 !important;
-		margin-left: auto !important;
-		float: right;
-	}
-
-	.toCenter[class*='col-'] {
-		margin-left: auto !important;
-		margin-right: auto !important;
-	}
-
-	// generate columns
-	@for $i from 1 through 12 {
-		$width: (100% / 12) * $i;
-
-		> .col-#{$i}-12 {
-			max-width: $width;
-		}
-	}
-
-	& + .grid {
-		margin-top: 20px;
-	}
-
-	&:after {
-		content: "";
-		display: table;
-		clear: both;
-	}
 }
 
 // Generate fixed Classes
@@ -1549,37 +1501,8 @@ html:not(.mobile) .slide.video .background[style] {
 
 }
 
-/* smaller that tablet landscape */
+/* smaller than tablet landscape */
 @include media($tablet, max){
-	.videoThumbnail {
-		max-width: 100%;
-		width: 100%;
-	}
-	
-	.grid:not(.later) > [class*='col-'] {
-		max-width: 100% !important;
-		width: 100% !important;
-	}
-	
-	.grid:not(.later) > [class*='col-'] .mobileLeft {
-		text-align: left;  
-	}
-	
-	.grid:not(.later) > [class*='col-'] .mobileRight {
-		text-align: right;  
-	}
-	
-	.grid:not(.later) > [class*='col-'] .pad {
-		 border: none;
-		 padding: 10% 0 !important;
-		 border-radius: 0;
-		 transition: 0s !important;
-	}
-	.grid:not(.later) > [class*='col-'] .pad:hover,
-	.grid:not(.later) > [class*='col-'] .pad.stroke {
-		 background: inherit;
-		 color: inherit;
-	}
 	
 	.shiftImage {
 		margin-top: 0 !important;
@@ -1589,22 +1512,6 @@ html:not(.mobile) .slide.video .background[style] {
 	.shiftImageVertical {
 		margin-right: 0 !important;
 		max-width: 100% !important;
-	}
-}
-
-/* phablet landscape and tablet portrait and smaller */
-@include media($phablet - 1, max){
-	.grid.later > [class*='col-'] {
-		max-width: 100% !important;
-		width: 100% !important;
-	}
-	
-	.grid.later > [class*='col-'] .mobileLeft {
-		text-align: left;  
-	}
-	
-	.grid.later > [class*='col-'] .mobileRight {
-		text-align: right;  
 	}
 }
 
@@ -1634,6 +1541,9 @@ html:not(.mobile) .slide.video .background[style] {
 	.showForTablet {
 		display: block !important;
 	}
+	.showForTabletInline {
+		display: inline !important;
+	}
 }
 
 
@@ -1648,6 +1558,9 @@ html:not(.mobile) .slide.video .background[style] {
 	.showForPhablet {
 		 display: block !important;
 	}
+	.showForPhabletInline {
+		 display: inline !important;
+	}
 }
 
 
@@ -1661,6 +1574,9 @@ html:not(.mobile) .slide.video .background[style] {
 	.showForPhone {
 		 display: block !important;
 	}
+	.showForPhoneInline {
+		 display: inline !important;
+	}
 }
 
 /* show and hide for Mobile */
@@ -1670,6 +1586,10 @@ html.mobile .hideForMobile {
 
 html.mobile .showForMobile {
 	display: block !important;
+}
+
+html.mobile .showForMobileInline {
+	display: inline !important;
 }
 
 .helpBubble {
@@ -2051,10 +1971,12 @@ html.mobile .showForMobile {
 
 
 /* preloader */
-html:not(.page-loaded) .slides.animated .slide.selected,
-html:not(.page-loaded) .slides.animated.scroll .slide {
+html:not(.page-loaded) .slides.animated:not(.noPreload) .slide.selected,
+html:not(.page-loaded) .slides.animated.scroll:not(.noPreload) .slide {
 	 opacity: 0.2 !important;
 }
+
+
 
 .loadingIcon {
 	position: fixed;
@@ -2475,6 +2397,11 @@ html:not(.page-loaded) .slides.animated.scroll .slide {
 			pointer-events:none;
 		}
 	}
+
+	.hideDropdown {
+		opacity: 0;
+		pointer-events: none;
+	}
 	
 	&.bottom {
 		transform-origin: bottom;
@@ -2867,6 +2794,11 @@ html:not(.page-loaded) .slides.animated.scroll .slide {
 		animation: popupFadeIn 0.75s;
 	}
 
+  &.hidePopup {
+    opacity: 0;
+    pointer-events: none;
+  }
+
 	.content {
 		overflow-y: auto;
 	}
@@ -2984,6 +2916,13 @@ html:not(.page-loaded) .slides.animated.scroll .slide {
 
 @keyframes popupFadeIn {
 	from { opacity: 0;}
+}
+
+.popupShown,
+.popupShown body,
+.sidebarShown,
+.sidebarShown body {
+	overflow-y: hidden !important;
 }
 
 /* embed video container for slides and popups */
@@ -3115,23 +3054,28 @@ html:not(.page-loaded) .slides.animated.scroll .slide {
 		cursor: pointer;
 	}
 
-	&.autoHeight {
-		transition: 0.5s;
-	}
-
 	> li {
 		display: none;
 		top: 0;
 		left: 0;
 		opacity: 0;
-		transition: opacity 0.35s;
+		transition: opacity 0.5s;
 		pointer-events: none;
 
 		&.selected {
 			display: block;
 			opacity: 1;
-			transition: opacity 0.35s;
+			transition: opacity 0.5s;
 			pointer-events: all;
+		}
+	}
+
+	&.autoHeight {
+		transition: 0.5s;
+
+		> li {
+			display: block;
+			position: absolute;
 		}
 	}
 }
@@ -3153,18 +3097,18 @@ html:not(.page-loaded) .slides.animated.scroll .slide {
 
 
 /*                   \                           /
-		.           ,                              o
-		 *                 ¤     ~            .·
-				______  __  __          _       *
-			 |  ___/ / _// _|   *    | |        
-			 | |___ | |_| |_ ___  ___| |_ ____
-		.  |  __/ |  _|  _/ _ \/ __| __/ __/
-	 ¯   | |____| | | ||  __| (__| |_\__ \    ¨
-	´    |_____/|_| |_| \___|\___/\__/___/   '
-																 ¸         §
-	 ¸.*         ¤        *         .           .
-											.            °            /
-.*/                 
+    .           ,                              o
+     *                 ¤     ~            ..
+        ______  __  __          _       *
+       |  ___/ / _// _|   *    | |        
+       | |___ | |_| |_ ___  ___| |_ ____
+    .  |  __/ |  _|  _/ _ \/ __| __/ __/
+   ¯   | |____| | | ||  __| (__| |_\__ \    ¨
+  ´    |_____/|_| |_| \___|\___/\__/___/   '
+                                 ¸         §
+   ¸.*         ¤        *         .           .
+                      .            °            /
+.*/             
 
 /* DEFAULT */
 .slide.before {
@@ -3445,7 +3389,6 @@ html:not(.page-loaded) .slides.animated.scroll .slide {
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	transform: translate3d(0,0,0);
-
 	transition-timing-function: cubic-bezier(0.25, 0.1, 0.20, 1);
 }
 
@@ -3454,55 +3397,55 @@ html:not(.page-loaded) .slides.animated.scroll .slide {
 .animated.fast.animate [class*="ae-"]:not(.done),
 .animated.animate .fast [class*="ae-"]:not(.done),
 .animated.animate [class*="ae-"].fast:not(.done) {
-	transition-duration: $fast-duration + ms;
+    transition-duration: $fast-duration + ms;
 }
-
+ 
 .animated .animate [class*="ae-"]:not(.done),
 .animated.animate [class*="ae-"]:not(.done) {
-	transition-duration: $default-duration + ms;
+    transition-duration: $default-duration + ms;
 }
-
+ 
 .animated.slow .animate [class*="ae-"]:not(.done),
 .animated.slow.animate [class*="ae-"]:not(.done),
 .animated.animate .slow [class*="ae-"]:not(.done),
 .animated.animate [class*="ae-"].slow:not(.done) {
-	transition-duration: $slow-duration + ms;
+    transition-duration: $slow-duration + ms;
 }
 
 /* Delays */
 
 //Default delay
 @for $i from 1 through 10 {
-	$delay: ($i - 1) * $default-delay-step + $start-delay;
-
-	.animated .animate .ae-#{$i}:not(.done),
-	.animated.animate .ae-#{$i}:not(.done) {
-		transition-delay: $delay + ms;
-	}
+    $delay: ($i - 1) * $default-delay-step + $start-delay;
+ 
+    .animated .animate .ae-#{$i}:not(.done),
+    .animated.animate .ae-#{$i}:not(.done) {
+        transition-delay: $delay + ms;
+    }
 }
-
+ 
 //Fast Delay
 @for $i from 1 through 10 {
-	$delay: ($i - 1) * $fast-delay-step + $start-delay;
-
-	.animated.fast .animate .ae-#{$i}:not(.done),
-	.animated.fast.animate .ae-#{$i}:not(.done),
-	.animated.animate .ae-#{$i}.fast:not(.done),
-	.animated.animate .fast .ae-#{$i}:not(.done) {
-		transition-delay: $delay + ms;
-	}
+    $delay: ($i - 1) * $fast-delay-step + $start-delay;
+ 
+    .animated.fast .animate .ae-#{$i}:not(.done),
+    .animated.fast.animate .ae-#{$i}:not(.done),
+    .animated.animate .ae-#{$i}.fast:not(.done),
+    .animated.animate .fast .ae-#{$i}:not(.done) {
+        transition-delay: $delay + ms;
+    }
 }
-
+ 
 //Slow Delay
 @for $i from 1 through 10 {
-	$delay: ($i - 1) * $slow-delay-step + $start-delay;
-
-	.animated.slow .animate .ae-#{$i}:not(.done),
-	.animated.slow.animate .ae-#{$i}:not(.done),
-	.animated.animate .ae-#{$i}.slow:not(.done),
-	.animated.animate .slow .ae-#{$i}:not(.done) {
-		transition-delay: $delay + ms;
-	}
+    $delay: ($i - 1) * $slow-delay-step + $start-delay;
+ 
+    .animated.slow .animate .ae-#{$i}:not(.done),
+    .animated.slow.animate .ae-#{$i}:not(.done),
+    .animated.animate .ae-#{$i}.slow:not(.done),
+    .animated.animate .slow .ae-#{$i}:not(.done) {
+        transition-delay: $delay + ms;
+    }
 }
 
 
@@ -3512,26 +3455,26 @@ html:not(.page-loaded) .slides.animated.scroll .slide {
 .animated.fromBottom [class*="ae-"]:not(.done),
 .slides.animated [class*="ae-"].fromBottom:not(.done) {
 	 visibility: hidden;
-	 transform: translate3d(0,$horisontal-distance,0);
+	 transform: translate3d(0,$horizontal-distance,0);
 	 opacity: 0;
 }
 
 .animated .fromTop [class*="ae-"]:not(.done),
 .animated.fromTop [class*="ae-"]:not(.done),
 .slides.animated [class*="ae-"].fromTop:not(.done) {
-	 transform: translate3d(0,-$horisontal-distance,0);
+	 transform: translate3d(0,-$horizontal-distance,0);
 }
 
 .animated .fromLeft [class*="ae-"]:not(.done),
 .animated.fromLeft [class*="ae-"]:not(.done),
 .slides.animated [class*="ae-"].fromLeft:not(.done) {
-	 transform: translate3d(-$horisontal-distance,0,0);
+	 transform: translate3d(-$horizontal-distance,0,0);
 }
 
 .animated .fromRight [class*="ae-"]:not(.done),
 .animated.fromRight [class*="ae-"]:not(.done),
 .slides.animated [class*="ae-"].fromRight:not(.done) {
-	 transform: translate3d($horisontal-distance,0,0);
+	 transform: translate3d($horizontal-distance,0,0);
 }
 
 .animated .fromCenter [class*="ae-"]:not(.done),
@@ -3549,26 +3492,26 @@ html:not(.page-loaded) .slides.animated.scroll .slide {
 .animated .fromBottomLeft [class*="ae-"]:not(.done),
 .animated.fromBottomLeft [class*="ae-"]:not(.done),
 .slides.animated [class*="ae-"].fromBottomLeft:not(.done) {
-	 transform: translate3d(-$horisontal-distance,$horisontal-distance,0);
+	 transform: translate3d(-$horizontal-distance,$horizontal-distance,0);
 }
 
 .animated .fromTopLeft [class*="ae-"]:not(.done),
 .animated.fromTopLeft [class*="ae-"]:not(.done),
 .slides.animated [class*="ae-"].fromTopLeft:not(.done) {
-	 -webkit-transform: translate3d(-$horisontal-distance,-$horisontal-distance,0);
-	 transform: translate3d(-$horisontal-distance,-$horisontal-distance,0);
+	 -webkit-transform: translate3d(-$horizontal-distance,-$horizontal-distance,0);
+	 transform: translate3d(-$horizontal-distance,-$horizontal-distance,0);
 }
 
 .animated .fromBottomRight [class*="ae-"]:not(.done),
 .animated.fromBottomRight [class*="ae-"]:not(.done),
 .slides.animated [class*="ae-"].fromBottomRight:not(.done) {
-	 transform: translate3d($horisontal-distance,$horisontal-distance,0);
+	 transform: translate3d($horizontal-distance,$horizontal-distance,0);
 }
 
 .animated .fromTopRight [class*="ae-"]:not(.done),
 .animated.fromTopRight [class*="ae-"]:not(.done),
 .slides.animated [class*="ae-"].fromTopRight:not(.done) {
-	 transform: translate3d($horisontal-distance,-$horisontal-distance,0);
+	 transform: translate3d($horizontal-distance,-$horizontal-distance,0);
 }
 
 .animated .fadeIn [class*="ae-"]:not(.done),
@@ -3640,16 +3583,16 @@ $directions: fromBottom fromTop fromLeft fromRight fromCenter fromAbove fromBott
 }
 
 // keyframes
-@keyframes fromBottom { from { transform: translate3d(0,$horisontal-distance,0); opacity:0;}}
-@keyframes fromTop { from { transform: translate3d(0,-$horisontal-distance,0); opacity:0;}}
-@keyframes fromLeft { from { transform: translate3d(-$horisontal-distance,0,0); opacity:0;}}
-@keyframes fromRight { from { transform: translate3d($horisontal-distance,0,0); opacity:0;}}
+@keyframes fromBottom { from { transform: translate3d(0,$horizontal-distance,0); opacity:0;}}
+@keyframes fromTop { from { transform: translate3d(0,-$horizontal-distance,0); opacity:0;}}
+@keyframes fromLeft { from { transform: translate3d(-$vertical-distance,0,0); opacity:0;}}
+@keyframes fromRight { from { transform: translate3d($vertical-distance,0,0); opacity:0;}}
 @keyframes fromCenter { from { transform: scale($small-scale) translate3d(0,0,0); opacity:0;}}
 @keyframes fromAbove { from { transform: scale($large-scale) translate3d(0,0,0); opacity:0;}}
-@keyframes fromBottomLeft { from { transform: translate3d(-$horisontal-distance,$horisontal-distance,0); opacity:0;}}
-@keyframes fromTopLeft { from { transform: translate3d(-$horisontal-distance,-$horisontal-distance,0); opacity:0;}}
-@keyframes fromBottomRight { from { transform: translate3d($horisontal-distance,$horisontal-distance,0); opacity:0;}}
-@keyframes fromTopRight { from { transform: translate3d($horisontal-distance,-$horisontal-distance,0); opacity:0;}}
+@keyframes fromBottomLeft { from { transform: translate3d(-$horizontal-distance,$horizontal-distance,0); opacity:0;}}
+@keyframes fromTopLeft { from { transform: translate3d(-$horizontal-distance,-$horizontal-distance,0); opacity:0;}}
+@keyframes fromBottomRight { from { transform: translate3d($horizontal-distance,$horizontal-distance,0); opacity:0;}}
+@keyframes fromTopRight { from { transform: translate3d($horizontal-distance,-$horizontal-distance,0); opacity:0;}}
 @keyframes fadeIn { from { transform: scale(1) translate3d(0,0,0); opacity:0;}}
 @keyframes fromBlur { from { transform: scale(1) translate3d(0,0,0); filter:blur($blur-size); opacity:0;}}
 
@@ -3893,6 +3836,10 @@ $directions: fromBottom fromTop fromLeft fromRight fromCenter fromAbove fromBott
 .scroll .slide .background,
 .mobile .simplifiedMobile .slide .background {
 	position: absolute !important;
+}
+
+.scroll .slide:not(.autoHeight) .background,
+.mobile .simplifiedMobile .slide:not(.autoHeight) .background {
 	min-height: 100vh;
 }
 
@@ -3943,13 +3890,6 @@ $directions: fromBottom fromTop fromLeft fromRight fromCenter fromAbove fromBott
 	visibility: visible !important;
 	opacity: 1 !important;
 	transform: none !important;
-}
-
-.popupShown,
-.popupShown body,
-.sidebarShown,
-.sidebarShown body {
-	overflow-y: hidden !important;
 }
 
 .scroll .parallax:not(.video) .background {

@@ -1,28 +1,6 @@
 // *** Variables ***
 @import "plumber";
 
-/*
-$header-font: ('Source Sans Pro', sans-serif);
-$header-baseline: 0.144500;
-
-$body-font: ('Source Sans Pro', sans-serif);
-$body-baseline: 0.144500;
-
-$gh: 1rem;
-
-// COLOURS
-$color-medium: #303030;
-
-// FONT WEIGHTS
-$ultraLight:	200;
-$light:			300;
-$normal:		400;
-$semiBold:		500;
-$bold:			600;
-$ultraBold: 	900;
-
-*/
-
 @include plumber-set-defaults(
 	$font-size: 1,
 	$baseline: $body-baseline,

@@ -1,7 +1,7 @@
 /*  
 
    _____ _       _                 _  _____ 
-  / ___/| (•)   | |               | |/ ___/  v 3.0.7
+  / ___/| (*)   | |               | |/ ___/  v 3.1.2
  | (___ | |_  __| | ___ ____      | | (___  
   \___ \| | |/ _` |/ _ / __/  _   | |\___ \ 
   ____) | | | (_| |  __\__ \ | |__| |____) |
@@ -32,8 +32,9 @@ window.setHashLink = 1;
 window.hideSidebarOnBodyClick = 1;
 window.collectScrolls = 0;
 window.sliderStatus = 0;
-window.minScrollToSlide = 500; //new
-window.minSwipeToSlide = 35; //new
+window.minScrollToSlide = 500;
+window.minSwipeToSlide = 35;
+window.enableMobileZoom = 0; //new
 
 var $html = $('html');
 
@@ -48,8 +49,9 @@ if(window.isMobile){$html.addClass('mobile');}else{$html.addClass('desktop');}
 window.isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 window.isSafari = /^((?!chrome).)*safari/i.test(navigator.userAgent);
 window.isChrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase()); 
-window.isChromeiOS = navigator.userAgent.match('CriOS'); 
+window.isChromeiOS = navigator.userAgent.match('CriOS');
 window.isMSIE = navigator.userAgent.match('MSIE');
+window.isEdge = navigator.userAgent.match('Edge');
 window.isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
 window.isiPad = navigator.userAgent.match(/iPad/i) !== null;
 
@@ -63,6 +65,7 @@ if (window.isSafari){$html.addClass('safari');}
 if (window.isFirefox){$html.addClass('firefox');}
 if (window.isChrome){$html.addClass('chrome');}
 if (window.isMSIE){$html.addClass('msie');}
+if (window.isEdge){$html.addClass('edge');}
 if (window.isAndroid){$html.addClass('android');}
 if (window.isWindows){$html.addClass('windows');}
 if (window.isOSX){$html.addClass('osx');}
@@ -280,7 +283,7 @@ $(document).ready(function() { "use strict";
    
   /*
          _____ _       _         _____ _                            
-        / ___/| (•)   | |       / ___/| |                           
+        / ___/| (*)   | |       / ___/| |                           
        | (___ | |_  __| | ___  | |    | |__   __ _ _ __   __ _  ___ 
         \___ \| | |/ _` |/ _ \ | |    | '_ \ / _` | '_ \ / _` |/ _ \
         ____) | | | (_| |  __/ | |____| | | | (_| | | | | (_| |  __/
@@ -359,7 +362,7 @@ $(document).ready(function() { "use strict";
     }
     
     //prepare to show slide
-    newSlide.find('.content').scrollTop(0);
+    newSlide.find('.content, .container').scrollTop(0);
 
     if (window.loaded){
       //wait for animation
@@ -660,7 +663,7 @@ $(document).ready(function() { "use strict";
 
   //scroll or simplified mobile
   if ( (window.isMobile && window.isSimplifiedMobile) || window.isScroll ){
-    $(window).on('DOMMouseScroll mousewheel scroll touchmove load', function(){
+    $(window).on('DOMMouseScroll mousewheel scroll touchmove load scrollend', function(){
       updateScroll();
     });
   }
@@ -826,7 +829,7 @@ $(document).ready(function() { "use strict";
    
   /* 
          ______                      
-        / ____/       (•)
+        / ____/       (*)
        | (_____      ___ _ __   ___ 
         \___ \ \ /\ / | | '_ \ / _ \
         ____) \ V  V /| | |_) |  __/
@@ -970,7 +973,7 @@ $(document).ready(function() { "use strict";
   if (($('.panel.hideOnScroll').length > 0) && (window.isScroll || window.isSimplifiedMobile)){
     var lastScrollTop,
         i = 0,
-        sensitivity = 400,
+        sensitivity = window.hideOnScrollSensitivity ? window.hideOnScrollSensitivity : 400,
         panelToHide = $('.panel.hideOnScroll');
          
     //hide if height larger than screen size 
@@ -1029,9 +1032,9 @@ $(document).ready(function() { "use strict";
         scrollDistance = 50,
         currentSection = $('.slide.selected .content'),
         scrollTop = $(currentSection).scrollTop(),
-        finalScroll = scrollTop + parseInt(delta*scrollDistance);
+        finalScroll = scrollTop + parseInt(delta * scrollDistance);
 
-    if ($('body').hasClass('disableKeyNavigation') || e.target.nodeName.toLowerCase() == 'input' || e.target.nodeName.toLowerCase() == 'textarea') {
+    if (window.window.disableKeyNavigation || e.target.nodeName.toLowerCase() == 'input' || e.target.nodeName.toLowerCase() == 'textarea') {
       return;
     }
     
@@ -1097,11 +1100,11 @@ $(document).ready(function() { "use strict";
    
   /*
        _   _                           _                 
-      | \ | |           ( )           | | ( )                 •
-      |  \| | __ ___   ___  __ _  __ _| |_ _  ___  _ __       •
-      | . ` |/ _` \ \ / | |/ _` |/ _` | __| |/ _ \| '_ \     (•)
-      | |\  | (_| |\ V /| | (_| | (_| | |_| | (_) | | | |     •
-      |_| \_|\__,_| \_/ |_|\__, |\__,_|\__|_|\___/|_| |_|     •
+      | \ | |           ( )           | | ( )                 *
+      |  \| | __ ___   ___  __ _  __ _| |_ _  ___  _ __       *
+      | . ` |/ _` \ \ / | |/ _` |/ _` | __| |/ _ \| '_ \     (*)
+      | |\  | (_| |\ V /| | (_| | (_| | |_| | (_) | | | |     *
+      |_| \_|\__,_| \_/ |_|\__, |\__,_|\__|_|\___/|_| |_|     *
                             __/ |
       Generate navigation  /___/               
   */
@@ -1163,14 +1166,16 @@ $(document).ready(function() { "use strict";
   }
   
   //In-page #Navigation
-  $("a[href^='#'][target!='_blank']").click(function(e){ e.preventDefault();
-    
+  $("a[href^='#'][target!='_blank']").click(function(e){ 
+
     var url = $(this).attr('href'),
         hashLink = url.split('#')[1],
-        requestedElement = $('.slide[name="' +hashLink+ '"], .slide[data-name="' +hashLink+ '"]')
+        requestedElement = $('.slide[name="' +hashLink+ '"], .slide[data-name="' +hashLink+ '"]');
     
     if( hashLink && requestedElement.length > 0 ){
-      
+
+      e.preventDefault();
+    
       if ( window.isMobile && window.isSimplifiedMobile || window.isScroll ){
         var target = requestedElement;
         if (target.length) {
@@ -1218,7 +1223,7 @@ $(document).ready(function() { "use strict";
   
    
   /*     _____       _      _                 ☰   
-        / ____(•)   | |    | |                
+        / ____(*)   | |    | |                
        | (___  _  __| | ___| |__   __ _ _ __   
         \___ \| |/ _` |/ _ | '_ \ / _` | '_/
         ____) | | (_| |  __| |_) | (_| | |   
@@ -1319,6 +1324,9 @@ $(document).ready(function() { "use strict";
     if (element.length > 0) {
       hideSidebar();
       $(element).addClass('visible');
+
+      //set a trigger
+      $(window).trigger('popupShown');
       
       if (isAnimated){
         setTimeout(function(){
@@ -1332,9 +1340,12 @@ $(document).ready(function() { "use strict";
       }
     
       $html.addClass('popupShown popup_' + popupID);
-      $(element).scrollTop(0);
+      $(element).find('.content').scrollTop(0);
       window.allowSlide = 0;
-      window.popupShown = 1;
+
+      //Add Popup ID in the stack
+      if (!window.popupShown) window.popupShown = [];
+      window.popupShown.push(popupID);
       
       //Autoplay Iframe
       if ($(element).hasClass('autoplay')){
@@ -1355,14 +1366,14 @@ $(document).ready(function() { "use strict";
     //clean up
     hideDropdown();
   }
-  
+
   function hidePopup() {
-    //stop video on close
-    if (window.popupShown){
-       
-      var element = $('.popup.visible'),
-          iframe = $(element).find('iframe'),
-          HTML5video = $(element).find('video');
+    if ( $.isArray(window.popupShown) ){
+
+      var lastAddedID = window.popupShown.slice(-1)[0],
+          $element = $('.popup.visible[data-popup-id="' + lastAddedID + '"]'),
+          iframe = $element.find('iframe'),
+          HTML5video = $element.find('video');
        
       //stop autoplay
       if (iframe.length > 0) {
@@ -1375,16 +1386,25 @@ $(document).ready(function() { "use strict";
           $(HTML5video)[0].currentTime = 0;
       }
        
-      $html.removeClass('popupShown').removeClassByPrefix('popup_');
-       
       //clear element animation on done
       clearTimeout(window.clearPopupElementAnimation);
+      $element.addClass('hidePopup');
       setTimeout(function(){
-        $(element).removeClass('visible animate active').find('.done').removeClass('done');
-      },1);
+        window.allowSlide = 1;
+
+        $element.removeClass('visible animate active hidePopup').removeAttr('style');
+        $html.removeClass('popup_' + lastAddedID);
+
+        //remove last shown id
+        window.popupShown.pop();
+
+        if (window.popupShown.length <= 0) {
+          $html.removeClass('popupShown');
+          window.popupShown = false;
+        }
+
+      }, 500);
        
-      window.allowSlide = 1;
-      window.popupShown = 0;  
     }
   }
    
@@ -1397,7 +1417,7 @@ $(document).ready(function() { "use strict";
   });
    
   //Hide on .close Click
-  $('.popup .close, .popup [data-popup-action="close"]').on('click', function(){
+  $('.popup [data-popup-action="close"]').on('click', function(){
     hidePopup();
   });
   
@@ -1417,8 +1437,10 @@ $(document).ready(function() { "use strict";
                              
        Grid Element Equalizer    */
   
-  $(window).on('resize load ready',function(){
-    equalizeElements();
+  $(window).on('resize load ready popupShown',function(){
+    setTimeout(function(){
+      equalizeElements();
+    }, 1);
   });
     
   function equalizeElements(){
@@ -1448,10 +1470,10 @@ $(document).ready(function() { "use strict";
               
           //apply
           $(element).find('.equalElement').each(function(index, el) {
-            $(el).css('height',height + "px");
+            $(el).css('height', height + "px");
           });
         } else {
-          $(equalElement).css("height",'auto');
+          $(equalElement).css("height", "auto");
         }
       });
     }
@@ -1472,14 +1494,14 @@ $(document).ready(function() { "use strict";
   
    
   /*     _____ _       _           
-        / ____| (•)   | |          
+        / ____| (*)   | |          
        | (___ | |_  __| | ___ _ __ 
         \___ \| | |/ _` |/ _ \ '_/
         ____) | | | (_| |  __/ |   
        |_____/|_|_|\__,_|\___/_|   
                                    
                                                            
-       Slider       • •(•)• •        */
+       Slider       * *(*)* *        */
   
   
   var sliderEl = $('.slider');
@@ -1489,17 +1511,35 @@ $(document).ready(function() { "use strict";
     $(sliderEl).each(function(index, element) {
 
       //check status
-      var sliderID = $(element).data('slider-id'),
-          nextIndex = $(element).find('.selected').index();
+      var $el = $(element),
+          sliderID = $el.data('slider-id'),
+          nextIndex = $el.find('.selected').index();
 
       //set status
       if (window.sliderStatus) {
         $html.removeClassByPrefix("slider_" + sliderID).addClass("slider_" + sliderID + "_" + nextIndex);
       }
 
+      //autoplay
+      if ($el.hasClass('autoplay')) {
+
+        var interval = ($el.data('slider-interval')) ? parseInt($el.data('slider-interval')) : 5000;
+
+        var autoplay = setInterval(function(){
+          $el.trigger('next');
+        },interval);
+
+        //stop interval on user interaction
+        if ($el.data('slider-stoponclick') != false) {
+          $('[data-slider-id="'+sliderID+'"]').on('mousedown touchstart', function(){
+            clearInterval(autoplay);
+          });
+        }
+      }
+
       //clickable
-      if ($(element).hasClass('clickable')){    
-        $(element).on('click', function(){
+      if ($el.hasClass('clickable') || $el.hasClass('autoplay')){    
+        $el.on('click next', function(){
   
           var $el = $(this),
               $selected = $el.children('.selected'),
@@ -1653,7 +1693,8 @@ $(document).ready(function() { "use strict";
     //show
     var $this = $(this),
         offset = $this.offset(),
-        offsetY = Math.ceil(offset.top),
+        position = $this.position(),
+        offsetY = window.popupShown ? Math.ceil(position.top) : Math.ceil(offset.top),
         offsetX = Math.ceil(offset.left),
         dropdownID = $this.data('dropdown-id'),
         $element = $('.dropdown[data-dropdown-id="' + dropdownID + '"]'),
@@ -1789,7 +1830,7 @@ $(document).ready(function() { "use strict";
    
   /*
         _____          _             
-        |  __ \(•)     | |            
+        |  __ \(*)     | |            
         | |  | |_  __ _| | ___   __ _ 
         | |  | | |/ _` | |/ _ \ / _` |
         | |__| | | (_| | | (_) | (_| |

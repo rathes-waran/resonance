@@ -70,12 +70,48 @@ $properties: padding padding-top padding-right padding-bottom padding-left margi
     }
   }
 }
-/// Output:
-//  .padding-top-0: 0px !important;
-//  .padding-top-1: 10px !important;
-//  ...
-//  .margin-left-19 { margin-left: 190px !important; }
-//  .margin-left-20 { margin-left: 200px !important; }
+
+// //Padding and Margin for Tablet
+// @include media($tablet, max){
+//   @each $property in $properties {
+//     $i: index($properties, $property);
+
+//     @for $n from 0 through 20 {
+//       $value: 10px * $n;
+//       .#{$property}-tablet-#{$n} {
+//         #{$property}: $value !important;
+//       }
+//     }
+//   }
+// }
+
+// //Padding and Margin for Phablet
+// @include media($phablet, max){
+//   @each $property in $properties {
+//     $i: index($properties, $property);
+
+//     @for $n from 0 through 20 {
+//       $value: 10px * $n;
+//       .#{$property}-phablet-#{$n} {
+//         #{$property}: $value !important;
+//       }
+//     }
+//   }
+// }
+
+// //Padding and Margin for Phone
+// @include media($phone, max){
+//   @each $property in $properties {
+//     $i: index($properties, $property);
+
+//     @for $n from 0 through 20 {
+//       $value: 10px * $n;
+//       .#{$property}-phone-#{$n} {
+//         #{$property}: $value !important;
+//       }
+//     }
+//   }
+// }
 
 // Crop
 .crop { margin: 0 !important;}
@@ -102,7 +138,7 @@ $properties: padding padding-top padding-right padding-bottom padding-left margi
 	cursor:  -webkit-zoom-out !important;
 }
 .cursorGrab {
-	cursor: move; /* fallback if grab cursor is unsupported */
+	cursor: move; 
 	cursor: grab !important;
 	cursor: -moz-grab !important;
 	cursor: -webkit-grab !important;
