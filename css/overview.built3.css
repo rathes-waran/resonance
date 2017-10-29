@@ -89,47 +89,47 @@
 }
 .section-hero .main-img {
     background-repeat: no-repeat;
-    background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.jpg");
+    background-image: url("https://ratheniel.github.io/Gradinterns-uploads/alv.png");
     position: absolute;
     background-position: center top;
     z-index: 1
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx), (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
     .section-hero .main-img {
-        background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.jpg")
+        background-image: url("https://ratheniel.github.io/Gradinterns-uploads/alv.png")
     }
 }
 @media only screen and (min-width: 1442px) {
     .section-hero .main-img {
         background-repeat: no-repeat;
-        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.jpg")
+        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/alv.png")
     }
 }
 @media only screen and (min-width: 1442px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-width: 1442px) and (min-resolution: 1.5dppx), only screen and (min-width: 1442px) and (min-resolution: 144dpi) {
     .section-hero .main-img {
-        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.jpg")
+        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/alv.png")
     }
 }
 @media only screen and (max-width: 1068px) {
     .section-hero .main-img {
         background-repeat: no-repeat;
-        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.jpg")
+        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/alv.png")
     }
 }
 @media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
     .section-hero .main-img {
-        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.jpg")
+        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/alv.png")
     }
 }
 @media only screen and (max-width: 735px) {
     .section-hero .main-img {
         background-repeat: no-repeat;
-        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.jpg")
+        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/alv.png")
     }
 }
 @media only screen and (max-width: 735px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 735px) and (min-resolution: 1.5dppx), only screen and (max-width: 735px) and (min-resolution: 144dpi) {
     .section-hero .main-img {
-        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.jpg")
+        background-image:  url("https://ratheniel.github.io/Gradinterns-uploads/alv.png")
     }
 }
 .section-hero .blur-bg {
@@ -142,47 +142,47 @@
 }
 .section-hero .blur-img {
     background-repeat: no-repeat;
-    background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.png");
+    background-image: url("https://resonanceanalytics.com/assets/img/blur-bg2.png");
     display: none;
     position: absolute;
     z-index: 3
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx), (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
     .section-hero .blur-img {
-        background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.png")
+        background-image: url("https://resonanceanalytics.com/assets/img/blur-bg2.png")
     }
 }
 @media only screen and (min-width: 1442px) {
     .section-hero .blur-img {
         background-repeat: no-repeat;
-        background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.png")
+        background-image: url("https://resonanceanalytics.com/assets/img/blur-bg2.png")
     }
 }
 @media only screen and (min-width: 1442px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-width: 1442px) and (min-resolution: 1.5dppx), only screen and (min-width: 1442px) and (min-resolution: 144dpi) {
     .section-hero .blur-img {
-        background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.png")
+        background-image: url("https://resonanceanalytics.com/assets/img/blur-bg2.png")
     }
 }
 @media only screen and (max-width: 1068px) {
     .section-hero .blur-img {
         background-repeat: no-repeat;
-        background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.png")
+        background-image: url("https://resonanceanalytics.com/assets/img/blur-bg2.png")
     }
 }
 @media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 1068px) and (min-resolution: 1.5dppx), only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
     .section-hero .blur-img {
-        background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.png")
+        background-image: url("https://resonanceanalytics.com/assets/img/blur-bg2.png")
     }
 }
 @media only screen and (max-width: 735px) {
     .section-hero .blur-img {
         background-repeat: no-repeat;
-        background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.png")
+        background-image: url("https://resonanceanalytics.com/assets/img/blur-bg2.png")
     }
 }
 @media only screen and (max-width: 735px) and (-webkit-min-device-pixel-ratio: 1.5), only screen and (max-width: 735px) and (min-resolution: 1.5dppx), only screen and (max-width: 735px) and (min-resolution: 144dpi) {
     .section-hero .blur-img {
-        background-image: url("https://ratheniel.github.io/Gradinterns-uploads/Official/assets/img/les-bg.png")
+        background-image: url("https://resonanceanalytics.com/assets/img/blur-bg2.png")
     }
 }
 .section-hero .blur-bg, .section-hero .blur-img {
