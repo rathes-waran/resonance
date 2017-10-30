@@ -84,13 +84,6 @@
     
     <script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"Organization","url":"https:\/\/www.resonanceanalytics.com\/","sameAs":[],"@id":"#organization","name":"Resonance Analytics","logo":""}</script>
     
-    <script type="text/javascript">
-
-      if (screen.width <= 699) {
-      document.location = "mobile.html";
-      }
-
-      </script>
     
     
     
@@ -425,14 +418,6 @@
 					</div>
 				</nav>
 
-				
-    
-<!-- Navigation -->
-<nav class="side hideForTablet">
-  <div class="navigation">
-    <ul></ul>
-  </div>
-</nav>
 
 <!-- Example navigation-lines -->
 <style>
@@ -509,20 +494,6 @@
                 
             </a></div>
             <div class="center">
-                <ul class="menu desktop hideForTablet SFBlack">
-                    <li>
-                        <div class="menu-header-menu-container">
-                            <ul id="menu-header-menu" class="menu">
-                                <li tabindex="1" class="dropdownTrigger current-menu-item" data-dropdown-hover="true" data-dropdown-id="dropdown-menu"><span style="font-size:0.8em;">Home</span></li>
-                                <li><a href="#" style="font-size:0.8em;">About</a></li>
-                                <li><a href="#" style="font-size:0.8em;">Profile</a></li>
-                                <li><a href="#" style="font-size:0.8em;">#DataViz</a></li>
-                                <li><a href="#" style="font-size:0.8em;">#WebDevelopment</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="dialogTrigger link" data-dialog-id="offer"><a style="font-size:0.8em;">Contact</a></li>
-                </ul>
             </div>
             <div class="right"><span class="button  actionButton sidebarTrigger" data-sidebar-id="1"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu"></use></svg></span></div>
         </div>
@@ -697,45 +668,9 @@
 		<div class="background" style="background-image:url(assets/img/blur-bg2.png)"></div>
 		<div class="background" style="background-image:url(assets/img/blur-bg3.png)"></div>
 	</section>
-  
-  <section class="slide fade-2 webgl hideForTablet">
-  <div class="content">
-    <div class="container">
-      <div class="wrap">
-        
-        <div class="fix-6-12">
-          <svg height="500" class="wide  fromCenter">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo"></use>
-          </svg>
-        </div>
-             
-      </div>
-    </div>
-  </div>
-  <div class="background"></div>
-</section>
    
   <!-- Slide 1 (#71) -->
-<section class="slide whiteSlide hideForTablet" style="margin-top: -30px;">
-  <div class="content">
-    <div class="container">
-      <div class="wrap">
-      
-        <div class="fix-10-12">
-          <h1 class=" OswaldDemiB uppercase" style="font-size: 7em;"> <span style="color: #ff96aa;">#</span>DataViz <br> <span style="color: #7fbcff;">#</span>WebDev</h1>
-           <div class=" fix-10-12 right">
-            <ul class="flex grid-48 later equal">
-            <li class="col-4-12"> </li>
-            <li class="col-8-12">
-			  <p class="SFRegular padding-right-6" style="color: #575757;">Welcome to Resonance Analytics! Where we provide solutions to companies that have trouble understanding their <span class="hghlght">data</span> and build <span class="hghlght">web applications</span> that build your <span class="hghlght">business.</span></p>
-            </li>
-          </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
    
 <section class="slide whiteSlide hideForDesktop">
   <div class="content">
@@ -942,7 +877,7 @@
       <div class="wrap padding-left-0 padding-right-0">
         <div class="fix-custom">
 
-          <h1 class=" OswaldDemiB uppercase hideForTablet" style="font-size: 7em;"> <span style="color: #ff96aa;">#</span>DataViz</h1>
+         
           <h1 class=" OswaldDemiB large uppercase hideForDesktop"> <span style="color: #ff96aa;">#</span>DataViz</h1>
 
            <div class=" fix-10-12 right">
@@ -1238,170 +1173,6 @@
             </ul>
         </div>
 	</div>
-	<script type="text/javascript" src="https://threejs.org/build/three.js"></script>
-
-<script type="text/javascript" src="https://threejs.org/examples/js/renderers/Projector.js"></script>
-<script type="text/javascript" src="https://threejs.org/examples/js/renderers/CanvasRenderer.js"></script>
-<script type="text/javascript" src="https://threejs.org/examples/js/libs/stats.min.js"></script>
-
-<script type="text/javascript">
-
-var SEPARATION = 100, AMOUNTX = 50, AMOUNTY = 50;
-
-var container, stats;
-var camera, scene, renderer;
-
-var particles, particle, count = 0;
-
-var mouseX = 0, mouseY = 0;
-
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
-
-init();
-animate();
-
-function init() {
-
-  container = $('.webgl .background');
-
-  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-  camera.position.z = 1000;
-
-  scene = new THREE.Scene();
-
-  particles = new Array();
-
-  var PI2 = Math.PI * 2;
-  var material = new THREE.SpriteCanvasMaterial( {
-
-    color: 0x007aff,
-    program: function ( context ) {
-
-      context.beginPath();
-      context.arc( 0, 0, 0.5, 0, PI2, true );
-      context.fill();
-
-    }
-
-  } );
-
-  var i = 0;
-
-  for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
-
-    for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
-
-      particle = particles[ i ++ ] = new THREE.Sprite( material );
-      particle.position.x = ix * SEPARATION - ( ( AMOUNTX * SEPARATION ) / 2 );
-      particle.position.z = iy * SEPARATION - ( ( AMOUNTY * SEPARATION ) / 2 );
-      scene.add( particle );
-
-    }
-
-  }
-
-  renderer = new THREE.CanvasRenderer();
-  renderer.setPixelRatio( window.devicePixelRatio );
-  renderer.setSize( window.innerWidth, window.innerHeight );
-  $(container).append( renderer.domElement );
-
-  document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-  document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-  document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-
-  //
-
-  window.addEventListener( 'resize', onWindowResize, false );
-
-}
-
-function onWindowResize() {
-
-  windowHalfX = window.innerWidth / 2;
-  windowHalfY = window.innerHeight / 2;
-
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize( window.innerWidth, window.innerHeight );
-
-}
-
-//
-
-function onDocumentMouseMove( event ) {
-
-  mouseX = event.clientX - windowHalfX;
-  mouseY = event.clientY - windowHalfY;
-
-}
-
-function onDocumentTouchStart( event ) {
-
-  if ( event.touches.length === 1 ) {
-
-    event.preventDefault();
-
-    mouseX = event.touches[ 0 ].pageX - windowHalfX;
-    mouseY = event.touches[ 0 ].pageY - windowHalfY;
-
-  }
-
-}
-
-function onDocumentTouchMove( event ) {
-
-  if ( event.touches.length === 1 ) {
-
-    event.preventDefault();
-
-    mouseX = event.touches[ 0 ].pageX - windowHalfX;
-    mouseY = event.touches[ 0 ].pageY - windowHalfY;
-
-  }
-
-}
-
-//
-
-function animate() {
-
-  requestAnimationFrame( animate );
-
-  render();
-  stats.update();
-
-}
-
-function render() {
-
-  camera.position.x += ( mouseX - camera.position.x ) * .05;
-  camera.position.y += ( - mouseY - camera.position.y ) * .05;
-  camera.lookAt( scene.position );
-
-  var i = 0;
-
-  for ( var ix = 0; ix < AMOUNTX; ix ++ ) {
-
-    for ( var iy = 0; iy < AMOUNTY; iy ++ ) {
-
-      particle = particles[ i++ ];
-      particle.position.y = ( Math.sin( ( ix + count ) * 0.3 ) * 50 ) +
-        ( Math.sin( ( iy + count ) * 0.5 ) * 50 );
-      particle.scale.x = particle.scale.y = ( Math.sin( ( ix + count ) * 0.3 ) + 1 ) * 4 +
-        ( Math.sin( ( iy + count ) * 0.5 ) + 1 ) * 4;
-
-    }
-
-  }
-
-  renderer.render( scene, camera );
-
-  count += 0.1;
-
-}
-</script>
 </body>
 
 </html>
